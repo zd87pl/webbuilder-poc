@@ -1,6 +1,6 @@
 # Web Builder - An example app built with Kombai
 
-A fully customisable website template editor - designed for visual editing of HTML templates. Edit texts, images, and layout blocks and get functional HTML, CSS code outputs. This app was entirely built using [Kombai](https://kombai.com/), an AI agent built for frontend tasks, across 5 threads.
+A production-ready frontend for a website template editor - designed for visual editing of HTML templates. Edit texts, images, and layout blocks and get functional HTML, CSS code outputs. This app was entirely built using [Kombai](https://kombai.com/), an AI agent built for frontend tasks, across 5 threads.
 
 ## 🛠️ Tech Stack
 
@@ -34,6 +34,6 @@ Here are the loom recordings of some threads used to build this project with Kom
 - [Thread 4](https://www.loom.com/share/ed7101e2c68b4aae832c60a09f28123a?sid=4c1a1536-9d09-4ee7-943a-b66aa4a68577)
 - [Thread 5](https://www.loom.com/share/d194b812adff4561bb3ea23e30c25334?sid=e829d672-8649-49d9-b760-f3ed854122e4)
 
-An additional thread used for refactoring the code using Kombai
+An additional thread used for refactoring the code output of Thread 5 using Kombai
 
 - [Additional Thread 1](https://www.loom.com/share/dff60665211a4d158a5d3076f2bf95ae?sid=d87474b2-3709-479f-9461-13b36ebec504)
