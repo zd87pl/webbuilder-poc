@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "vite preview --host",
-    "start": "vite preview --host 0.0.0.0 --port $PORT"
+    "start": "npx serve -s dist -l tcp://0.0.0.0:${PORT:-3000}"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -52,6 +52,7 @@
     "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
     "rollup": "^4.44.1",
+    "serve": "^14.2.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",

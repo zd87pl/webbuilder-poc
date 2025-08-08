@@ -54,9 +54,9 @@ export default defineConfig(({ mode }) => {
       open: true,
     },
     preview: {
-      host: '0.0.0.0',
+      host: true,
       port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
-      allowedHosts: ['all'],
+      allowedHosts: true,
     },
   };
 });
