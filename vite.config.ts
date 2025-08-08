@@ -4,34 +4,54 @@ import svgr from "vite-plugin-svgr";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
-const config = {
-  mode: "development",
-  build: {
-    outDir: "dist",
-    emptyOutDir: true,
-    sourcemap: true,
-    minify: false,
-    cssMinify: false,
-    terserOptions: { compress: false, mangle: false },
-  },
-  define: { "process.env.NODE_ENV": "'development'" },
-  esbuild: { jsx: "automatic", jsxImportSource: "react" },
-  plugins: [
-    react(),
-    svgr({ include: ["src/**/*.svg", "./**/*.svg"] }),
-    viteStaticCopy({
-      targets: [
-        { src: "./assets/*", dest: "assets" },
-        {
-          src: "./public/assets/{*,}",
-          dest: path.join("dist", "public/assets"),
+
+export default defineConfig(({ mode }) => {
+  const isDevelopment = mode === "development";
+  
+  return {
+    build: {
+      outDir: "dist",
+      emptyOutDir: true,
+      sourcemap: isDevelopment,
+      minify: isDevelopment ? false : "esbuild",
+      cssMinify: !isDevelopment,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom', 'react-router-dom'],
+            ui: ['@mantine/core', '@mantine/hooks'],
+          },
         },
-        { src: "src/assets/*", dest: path.join("dist", "assets") },
-      ],
-      silent: true,
-    }),
-  ],
-  resolve: {},
-};
-config.plugins.push(tsconfigPaths());
-export default defineConfig(config);
+      },
+    },
+    define: {
+      "process.env.NODE_ENV": JSON.stringify(mode),
+    },
+    esbuild: {
+      jsx: "automatic",
+      jsxImportSource: "react"
+    },
+    plugins: [
+      react(),
+      svgr({ include: ["src/**/*.svg", "./**/*.svg"] }),
+      viteStaticCopy({
+        targets: [
+          { src: "./public/*", dest: "." },
+          { src: "./assets/*", dest: "assets" },
+          {
+            src: "./public/assets/{*,}",
+            dest: "assets",
+          },
+          { src: "src/assets/*", dest: "assets" },
+        ],
+        silent: true,
+      }),
+      tsconfigPaths(),
+    ],
+    resolve: {},
+    server: {
+      port: 3000,
+      open: true,
+    },
+  };
+});

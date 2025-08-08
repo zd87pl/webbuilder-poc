@@ -13,7 +13,7 @@ export interface TemplateContent {
   css: string;
 }
 
-const TEMPLATES_API_URL = 'https://raw.githubusercontent.com/lazerpay/webbuilder-templates/main/index.json';
+const TEMPLATES_API_URL = import.meta.env.VITE_TEMPLATES_API_URL || 'https://raw.githubusercontent.com/lazerpay/webbuilder-templates/main/index.json';
 
 export const templateService = {
   async fetchTemplates(): Promise<Template[]> {
